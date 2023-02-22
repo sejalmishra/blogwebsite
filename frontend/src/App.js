@@ -47,7 +47,7 @@ function App() {
     event.preventDefault()
     try{
     const res = await axios.put(`/api/blogs/${editBlog}`, blog)
-     getBlogs()
+     getBlogs() 
     setBlog({
       title: "",
     author: "",
