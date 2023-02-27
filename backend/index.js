@@ -4,7 +4,9 @@ const express = require('express');
 const mongoose = require('mongoose')
 const blogsRouter =require('./controllers/blogs')
 const middleware = require('./utils/middleware')
+const userRouter = require('./controllers/users')
 const cors = require('cors');
+const loginRouter = require('./controllers/login');
 const app = express();
 const PORT = config.PORT;
 
@@ -26,7 +28,11 @@ mongoose.connect(mongoUrl, {
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/blogs',blogsRouter);
+app.use('/api/users', userRouter);
+app.use('/api/login', loginRouter);
+
+app.use(middleware.tokenExtractor)
+app.use('/api/blogs',middleware.userExtractor,blogsRouter);
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
