@@ -28,11 +28,12 @@ mongoose.connect(mongoUrl, {
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/users', userRouter);
-app.use('/api/login', loginRouter);
+// app.use('/api/users', userRouter);
+// app.use('/api/login', loginRouter);
 
-app.use(middleware.tokenExtractor)
-app.use('/api/blogs',middleware.userExtractor,blogsRouter);
+// app.use(middleware.tokenExtractor)
+// app.use('/api/blogs',middleware.userExtractor,blogsRouter);
+app.use('/api/blogs',blogsRouter);
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
